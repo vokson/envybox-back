@@ -15,9 +15,9 @@ abstract class Feedback extends Controller
     public function add(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name' => 'required|max:50',
             'phone' => 'required|digits:10',
-            'text' => 'required'
+            'message' => 'required|max:250'
         ]);
 
         if ($validator->fails()) {
@@ -30,7 +30,7 @@ abstract class Feedback extends Controller
             $this->getStorage()->save(
                 $validatedData['name'],
                 $validatedData['phone'],
-                $validatedData['text']
+                $validatedData['message']
             );
             return response()->noContent();
 

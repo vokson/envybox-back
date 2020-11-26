@@ -8,8 +8,8 @@ class FileStorage implements Storage
 {
     private $filename = 'feedback.json';
 
-    public function save($name, $phone, $text) {
-        
+    public function save($name, $phone, $message) {
+
         $arr = [];
         if (CommonStorage::exists($this->filename)) {
             $contents = CommonStorage::get($this->filename);
@@ -19,7 +19,7 @@ class FileStorage implements Storage
         $new = [
             'name' => $name,
             'phone' => $phone,
-            'text' => $text
+            'text' => $message
         ];
 
         $arr[] = $new;
